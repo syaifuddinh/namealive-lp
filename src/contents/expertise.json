@@ -1,0 +1,39 @@
+{
+    "highlightTitle": "To be the go-to IT consulting company for businesses looking to develop and optimize their digital products.",
+    "highlightDescription": "We offer mobile app development services that include planning, design, development, testing, and app launch. Our team is proficient in various technologies such as Android, iOS, and React Native, allowing us to provide the best solutions for our clients.",
+    "highlightDescription2": "With an experienced team of experts, we help our clients design, develop, and launch digital products that meet user needs and support business growth.",
+    "pros": [
+        {
+            "title": "Digital Transformation",
+            "description": "Stay ahead of the competition with the latest technologies to streamline operations and improve customer experiences."
+        },
+        {
+            "title": "Cloud Solutions",
+            "description": "We offer end-to-end cloud solutions (migration planning to implementation and management) ensuring your business can leverage the power of the cloud to drive agility, scalability, and cost savings."
+        },
+        {
+            "title": "Good Technology",
+            "description": "We use several technology with positive impact on the world, and this informs everything we do."
+        },
+        {
+            "title": "Info Technology",
+            "description": "We assess your' existing technology infrastructure and provide recommendations for improvement  and optimisation."
+        },
+        {
+            "title": "Good Products",
+            "description": "We build products base on the latest technology and automation practices, we guarantee our client as the fastest time to market."
+        },
+        {
+            "title": "IT Management",
+            "description": "We provide end-to-end project management services for ensuring on-time delivery within your budget with highest standards."
+        },
+        {
+            "title": "Good Impact",
+            "description": "We bring a diversity of perspectives together to solve a problem."
+        },
+        {
+            "title": "IT Infrastructure Optimization",
+            "description": "Optimisation for maximum performance, reliability, and scalability. We'll assess your setup, identify bottlenecks, and implement solution to improve your overall IT operations."
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "achievement": {
+        "finance": {
+            "title": "Finance",
+            "qty": "02"
+        },
+        "entertainment": {
+            "title": "Gaming & Entertainment",
+            "qty": "30"
+        },
+        "media": {
+            "title": "Telecommunication & Media",
+            "qty": "03"
+        }
+    },
+    "works": [
+        {
+            "id": "yuyu",
+            "title": "Yuyu Call",
+            "category": "SOCIAL MEDIA",
+            "thumbnail": "/images/project/yuyu/main.webp",
+            "year": "2024",
+            "description": "Yuyu Call is the best place to meet new friends and chat with strangers in an anonymous conversation. You can find people near you or from all around the world. It is also the best platform for seeking dates or a romantic partner. Yuyu Call is a completely free social network where you can meet new people and chat with them in an anonymous setting. The best part is that you can enjoy this experience without any limitations. You can meet people from all over the world or from your own country.",
+            "gallery": ["/images/project/yuyu/splashscreen.webp", "/images/project/yuyu/1.jpg", "/images/project/yuyu/2.jpg", "/images/project/yuyu/3.jpg"]
+        },
+        {
+            "id": "sidebeep",
+            "title": "Sidebeep",
+            "category": "MARKETPLACE PLATFORM",
+            "thumbnail": "/images/project/sidebeep/main.jpg",
+            "year": "2023",
+            "description": "Sidebeep is a marketplace application that provides lifestyle services. This app connects users with professional service providers in their respective fields. Customers who need lifestyle services such as: custom motorcycles, custom sneakers, sneaker laundry, tattoo artists, travel guides, makeup artists, home service spas, and private guides can easily access these services through this app. Some of the convenient features available on the app include: service booking, payment through an installment system, service customization, and pick-up and delivery services.",
+            "gallery": ["/images/project/sidebeep/1.webp","/images/project/sidebeep/2.webp","/images/project/sidebeep/3.webp","/images/project/sidebeep/4.webp","/images/project/sidebeep/5.webp","/images/project/sidebeep/6.webp", "/images/project/sidebeep/1.png"]
+        },
+        {
+            "id": "cheers",
+            "title": "Cheers",
+            "category": "SOCIAL MEDIA",
+            "thumbnail": "/images/project/cheers/1.png",
+            "year": "2022",
+            "description": "This is a casual hangout app that connects users who need a companion to enjoy various moments, such as hanging out, watching movies at the cinema, going to night clubs, attending concerts, traveling, having romantic dinners, and more, with selected potential companions. Users who need a companion for these special moments can simply create an event and make an attractive price offer to encourage potential companions to sign up. Each companion who successfully completes the event will receive a service reward based on the offer made by the event creator or the person seeking a companion.",
+            "gallery": ["/images/project/cheers/1.png", "/images/project/cheers/2.png", "/images/project/cheers/3.png"]
+        }
+
+
+    ]
+}

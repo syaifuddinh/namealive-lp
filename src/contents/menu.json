@@ -1,0 +1,10 @@
+{
+    "expertise": {
+        "title": "expertise",
+        "url" : "/expertises"
+    },
+    "projects": {
+        "title": "projects",
+        "url" : "/projects"
+    }
+}

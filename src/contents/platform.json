@@ -1,0 +1,30 @@
+{
+    "companyName": "Namea",
+    "description": "We are dedicated to helping your business grow and thrive by delivering world-class IT consulting services",
+    "socialPlatforms": [
+        {
+            "title": "instagram",
+            "url": "#"
+        },
+        {
+            "title": "linkedin",
+            "url": "#"
+        },
+        {
+            "title": "twitter",
+            "url": "#"
+        },
+        {
+            "title": "facebook",
+            "url": "#"
+        }
+    ],
+    "contacts": [
+        {
+            "id": "email",
+            "title": "email",
+            "slug": "mailto:",
+            "value": "business@nameatech.com"
+        }
+    ]
+}
