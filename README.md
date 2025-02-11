@@ -26,17 +26,8 @@ bun build
 ## Environtment Configuration (.ENV)
 There is couple config inside .env
 
-### MODE (DEVELOPMENT/PRODUCTION)
-Production mode can secure cookie, hacker or developer can't access cookie in production mode.
-
-### PUBLIC_BASE_URL
-URL for public access livestreaming
-
-### BACKEND_AUTH_URL
-URL for authentication, including login and registration activities
-
-### BACKEND_MATCH_URL
-URL for gaining match functional
+### AGORA_APP_ID
+App ID for agora identifier
 
 ## Pages
 ### Login

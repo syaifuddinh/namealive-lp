@@ -26,8 +26,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #212121;
+  --background: #2c2a2a;
+  --foreground: #fffafa;
 }
 
 body * {
@@ -48,4 +48,17 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* WebKit */
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-image {
+  animation: rotateAnimation 1s linear infinite;
 }

@@ -9,14 +9,15 @@ export type BroadcastStatus = "idle" | "pending" | "ongoing"
 const match = new MatchRepo();
 const broadcaster = new LiveRepo()
 
-export const MatchDetailHook = (matchId: string, channel: string) => {
+
+export const LiveHook = (matchSlug: string, channel: string) => {
     const [status, setStatus] = useState<BroadcastStatus>("idle")
     const [isLiveLoading, setIsLiveLoading] = useState<boolean>(false)
 
     const start = async () => {
         setIsLiveLoading(true)
 
-        const liveTicket = await match.getLiveToken(matchId)
+        const liveTicket = await match.getLiveToken(matchSlug)
         const token = liveTicket.data.token;
         const uid = liveTicket.data.uid;
         broadcaster.setProfile(channel, token, uid)

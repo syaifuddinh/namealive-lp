@@ -1,14 +1,17 @@
-import AgoraRTC, { IAgoraRTCClient } from "agora-rtc-sdk-ng";
+import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser } from "agora-rtc-sdk-ng";
 import { ILocalVideoTrack } from "agora-rtc-sdk-ng";
 
-export type LiveRoleOpt =  "host";
+export type LiveRoleOpt =  "audience";
+export type MediaTypeEnum =  "video" | "audio";
 interface RTCInterface {
   client: IAgoraRTCClient |null;
 };
 
+export const playerElementId = "player-container"
+
 export class LiveRepo {
     readonly appId: string = String(process.env.AGORA_APP_ID);
-    readonly role: LiveRoleOpt = "host"
+    readonly role: LiveRoleOpt = "audience"
     private channel: string = "";
     private token: string = "";
     private uid: number = 0;
@@ -17,6 +20,7 @@ export class LiveRepo {
     };
     private track?: ILocalVideoTrack;
     private handleTrackStopped?: () => void;
+    
 
     setProfile(channel: string, token: string, uid: number) {
       this.channel = channel;
@@ -31,21 +35,21 @@ export class LiveRepo {
     async start(): Promise<void> {
 
       this.init()
-      await this.joinAsHost()
-      await this.publish()
+      await this.joinAsAudience()
       this.registerEvent()
+      this.subscribeTrack()
     }
   
     init() {
       this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8", role: this.role });
     }
 
-    async joinAsHost(): Promise<void> {
+    async joinAsAudience(): Promise<void> {
       if(!this.rtc.client) return;
       await this.rtc.client.join(this.appId, this.channel, this.token, this.uid);
       this.rtc.client.setClientRole(this.role);
       
-      console.log("Host joined and published tracks.");
+      console.log("Audience joined.");
     }
 
     // Screensharing your computer
@@ -73,6 +77,29 @@ export class LiveRepo {
             console.log("Screen sharing has been stopped");
             if(this.handleTrackStopped) this.handleTrackStopped()
         });
+    }
+
+    subscribeTrack() {
+      if(!this.rtc.client) return;
+      this.rtc.client?.on("user-published", async (user: IAgoraRTCRemoteUser, mediaType: MediaTypeEnum ) => {
+        if(!this.rtc.client) return;
+        await this.rtc.client.subscribe(user, mediaType);
+        console.log("subscribe success");
+        
+        if (mediaType === "video") {
+            this.watch(user);
+        }
+
+        if (mediaType === "audio") {
+            user.audioTrack.play();
+        }
+      })
+    }
+
+    watch(user: IAgoraRTCRemoteUser) {
+      const el: HTMLDivElement = document.getElementById(playerElementId) as HTMLDivElement
+      if(!el) throw new Error("Player element is not found");
+      user.videoTrack.play(el)
     }
 
     async unpublish(): Promise<void> {
