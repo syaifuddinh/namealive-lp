@@ -90,7 +90,7 @@ export class LiveRepo {
             this.watch(user);
         }
 
-        if (mediaType === "audio") {
+        if (mediaType === "audio" && user.audioTrack) {
             user.audioTrack.play();
         }
       })
