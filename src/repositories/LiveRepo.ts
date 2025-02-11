@@ -97,6 +97,7 @@ export class LiveRepo {
     }
 
     watch(user: IAgoraRTCRemoteUser) {
+      if(!user.videoTrack) return;
       const el: HTMLDivElement = document.getElementById(playerElementId) as HTMLDivElement
       if(!el) throw new Error("Player element is not found");
       user.videoTrack.play(el)
