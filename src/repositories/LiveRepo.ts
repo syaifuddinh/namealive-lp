@@ -11,7 +11,7 @@ export const playerElementId = "player-container"
 
 export class LiveRepo {
     readonly appId: string = String(process.env.AGORA_APP_ID);
-    readonly role: LiveRoleOpt = "audience"
+    readonly role: LiveRoleOpt = "audience";
     private channel: string = "";
     private token: string = "";
     private uid: number = 0;

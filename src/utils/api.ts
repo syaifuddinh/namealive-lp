@@ -21,6 +21,8 @@ export const api = async <T extends Record<string, string|number|boolean> | Body
 
     const fetched = await response.json();
     
+    console.log({ fetched, response })
+    
     if (!response.ok) {
         throw new Error(fetched ? fetched?.message : fetched);
     }

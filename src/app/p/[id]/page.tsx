@@ -9,6 +9,8 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
   let matchName: string = ""
   let channel: string = ""
 
+  console.log({ matchSlug })
+
   try {
     const resp = await match.show(matchSlug) 
     matchName = resp.data.name
