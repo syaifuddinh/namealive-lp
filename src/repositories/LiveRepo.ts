@@ -1,5 +1,6 @@
 import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser } from "agora-rtc-sdk-ng";
 import { ILocalVideoTrack } from "agora-rtc-sdk-ng";
+import { timeStamp } from "console";
 
 export type LiveRoleOpt =  "audience";
 export type MediaTypeEnum =  "video" | "audio";
@@ -19,7 +20,10 @@ export class LiveRepo {
       client: null
     };
     private track?: ILocalVideoTrack;
+    private pending: boolean = false;
     private handleTrackStopped?: () => void;
+    private handleTrackStarted?: () => void;
+    private handleTrackStartedFail?: () => void;
     
 
     setProfile(channel: string, token: string, uid: number) {
@@ -30,6 +34,14 @@ export class LiveRepo {
 
     onTrackStopped(event: () => void) {
       this.handleTrackStopped = event;
+    }
+
+    onTrackStarted(event: () => void) {
+      this.handleTrackStarted = event;
+    }
+
+    onTrackStartedFail(event: () => void) {
+      this.handleTrackStartedFail = event;
     }
     
     async start(): Promise<void> {
@@ -46,10 +58,22 @@ export class LiveRepo {
 
     async joinAsAudience(): Promise<void> {
       if(!this.rtc.client) return;
-      await this.rtc.client.join(this.appId, this.channel, this.token, this.uid);
-      this.rtc.client.setClientRole(this.role);
-      
-      console.log("Audience joined.");
+      try {
+
+          await this.rtc.client.join(this.appId, this.channel, this.token, this.uid);
+          this.rtc.client.setClientRole(this.role);
+          this.pending = true;
+          const self = this
+          setTimeout(() => {
+            if(self.pending === true) {
+              self.pending = false;
+              if(this.handleTrackStartedFail) this.handleTrackStartedFail()
+            } 
+          }, 10000)
+          
+          console.log("Audience joined.");
+      } catch {
+      }
     }
 
     // Screensharing your computer
@@ -71,12 +95,19 @@ export class LiveRepo {
       }
     }
 
-    registerEvent() {
-        if(!this.track) return
-        this.track.getMediaStreamTrack().addEventListener("ended", () => {
-            console.log("Screen sharing has been stopped");
-            if(this.handleTrackStopped) this.handleTrackStopped()
-        });
+    registerEvent() {        
+        if(!this.rtc.client) return
+        this.rtc.client?.on("user-unpublished", async (user: IAgoraRTCRemoteUser, mediaType: MediaTypeEnum ) => {
+          if(!this.rtc.client) return;
+          
+          if (mediaType === "video") {
+              if(this.handleTrackStopped) this.handleTrackStopped()
+          }
+  
+          if (mediaType === "audio" && user.audioTrack) {
+              user.audioTrack.stop();
+          }
+        })
     }
 
     subscribeTrack() {
@@ -84,7 +115,9 @@ export class LiveRepo {
       this.rtc.client?.on("user-published", async (user: IAgoraRTCRemoteUser, mediaType: MediaTypeEnum ) => {
         if(!this.rtc.client) return;
         await this.rtc.client.subscribe(user, mediaType);
-        console.log("subscribe success");
+
+        this.pending = false;
+        if(this.handleTrackStarted) this.handleTrackStarted();
         
         if (mediaType === "video") {
             this.watch(user);
@@ -116,5 +149,16 @@ export class LiveRepo {
     async stop(): Promise<void> {
       if(!this.rtc.client) return
       await this.rtc.client.leave()
+    }
+
+    switchFullscreen = () => {
+      const el: HTMLDivElement = document.getElementById(playerElementId) as HTMLDivElement
+      if (!document.fullscreenElement) {
+          el.requestFullscreen().catch(err => {
+              console.error(`Error attempting to enable fullscreen: ${err.message}`);
+          });
+      } else {
+          document.exitFullscreen();
+      }
     }
   }

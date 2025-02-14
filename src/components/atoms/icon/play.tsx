@@ -3,8 +3,8 @@ import * as React from "react";
 export const PlayIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="48"
-    height="48"
+    width="72"
+    height="72"
     viewBox="-0.5 0 7 7"
   >
     <g id="Page-1" fill="none" fillRule="evenodd" stroke="none" strokeWidth="1">

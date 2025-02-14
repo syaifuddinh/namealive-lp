@@ -9,24 +9,21 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
   let matchName: string = ""
   let channel: string = ""
 
-  console.log({ matchSlug })
-
   try {
     const resp = await match.show(matchSlug) 
     matchName = resp.data.name
     channel = resp.data.channel_id;
 
   } catch(e: any) {
-    console.log({ err: e })
     notFound()
   }
 
   return (
     <div>
-      <div className="h-[136px] relative z-30 flex items-center px-12">
+      <div className="h-[72px] relative z-30 flex items-center px-12">
           <div
-            className="absolute left-0  w-full h-full opacity-10 blur-md" 
-            style={{"background": "linear-gradient(180deg, rgba(179,166,166,0.14002097420999648) 32%, rgba(91,93,88,1) 100%)"}}
+            className="absolute left-0 -top-[1rem]  w-full h-[125%] opacity-10 blur-md" 
+            style={{"background": "linear-gradient(180deg, rgb(0, 0, 0) 32%, rgb(0, 0, 0) 100%)"}}
           >
           </div>
           <h1 className="text-xl relative z-20 font-medium">
@@ -37,6 +34,13 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
       <LiveMatch
         channel={channel}
         matchSlug={matchSlug}
+      />
+
+      <img
+        src="https://opentrolley.co.id/Images/otlogo2.png"
+        width={200}
+        height={150}
+        className="w-[200px] h-auto absolute right-[1rem] top-[1rem] z-[100]"
       />
     </div>
   )
