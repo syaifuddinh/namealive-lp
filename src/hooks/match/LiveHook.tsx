@@ -9,6 +9,18 @@ export type BroadcastStatus = "idle" | "pending" | "ongoing"
 const match = new MatchRepo();
 const broadcaster = new LiveRepo()
 
+const timeframe = { lastTap: 0, doubleTapThreshold: 300 }
+const onTouchend = () => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - timeframe.lastTap;
+
+    if (tapLength < timeframe.doubleTapThreshold && tapLength > 0) {
+        broadcaster.switchFullscreen()
+    }
+    
+    timeframe.lastTap = currentTime;
+} 
+
 
 export const LiveHook = (matchSlug: string, channel: string) => {
     const [status, setStatus] = useState<BroadcastStatus>("idle")
@@ -16,9 +28,11 @@ export const LiveHook = (matchSlug: string, channel: string) => {
 
     const onAfterPlay = () => {
         document.addEventListener("dblclick", broadcaster.switchFullscreen);
+        document.addEventListener("touchend", onTouchend);
     }
     const onAfterStop = () => {
         document.removeEventListener("dblclick", broadcaster.switchFullscreen);
+        document.removeEventListener("touchend", onTouchend);
     }
 
     const start = async () => {
@@ -53,7 +67,10 @@ export const LiveHook = (matchSlug: string, channel: string) => {
         await broadcaster.stop();
         setStatus("idle")
         setIsLiveLoading(false)
-        onAfterStop()
+        onAfterStop(
+
+
+        )
     }
     
     const stop = async () => {

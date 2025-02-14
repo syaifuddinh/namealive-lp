@@ -1,6 +1,5 @@
 import AgoraRTC, { IAgoraRTCClient, IAgoraRTCRemoteUser } from "agora-rtc-sdk-ng";
 import { ILocalVideoTrack } from "agora-rtc-sdk-ng";
-import { timeStamp } from "console";
 
 export type LiveRoleOpt =  "audience";
 export type MediaTypeEnum =  "video" | "audio";
@@ -9,6 +8,7 @@ interface RTCInterface {
 };
 
 export const playerElementId = "player-container"
+export const playerContainerElementId = "player-parent"
 
 export class LiveRepo {
     readonly appId: string = String(process.env.AGORA_APP_ID);
@@ -152,7 +152,7 @@ export class LiveRepo {
     }
 
     switchFullscreen = () => {
-      const el: HTMLDivElement = document.getElementById(playerElementId) as HTMLDivElement
+      const el: HTMLDivElement = document.getElementById(playerContainerElementId) as HTMLDivElement
       if (!document.fullscreenElement) {
           el.requestFullscreen().catch(err => {
               console.error(`Error attempting to enable fullscreen: ${err.message}`);
