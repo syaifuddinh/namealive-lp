@@ -9,10 +9,12 @@ import Image from "next/image";
 export const LiveMatch = ({
     matchSlug,
     matchName,
+    image,
     channel
 }: {
     matchSlug: string;
     matchName: string;
+    image: string;
     channel: string;
 }) => {
     const ctrl = LiveHook(matchSlug, channel)
@@ -53,10 +55,11 @@ export const LiveMatch = ({
                     </h1>
 
                     <img
-                        src="https://opentrolley.co.id/Images/otlogo2.png"
+                        src={image}
                         width={200}
                         height={150}
-                        className="w-[100px] sm:w-[200px] h-auto absolute right-[1rem] z-[100]"
+                        className="w-[100px] sm:w-[200px] h-auto absolute top-[1rem] right-[1rem] z-[100]"
+                        loading="eager"
                     />
                 </div>
                 

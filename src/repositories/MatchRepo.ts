@@ -8,7 +8,6 @@ export class MatchRepo {
   
     async show(uid: string): Promise<APIResp<MatchDetailResp>> {
       const url = this.baseUrl + "/public/match/" + uid 
-      console.log({ matchUrl: url })
       const resp = await api<null>(url, "GET")
       
       return resp

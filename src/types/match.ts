@@ -1,6 +1,7 @@
 export interface MatchDetailResp {
     name: string;
     channel_id: string;
+    image: string;
 }
 
 
