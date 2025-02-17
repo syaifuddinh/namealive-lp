@@ -18,7 +18,7 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
     matchName = resp.data.name
     // channel = resp.data.channel_id;
 
-  } catch(e: any) {
+  } catch {
     notFound()
   }
 
