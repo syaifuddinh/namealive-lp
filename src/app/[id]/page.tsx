@@ -9,7 +9,7 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
   let matchName: string = ""
   let image: string = ""
   // let channel: string = ""
-
+  image = ""
   // dummy
   const channel: string = "channeldummy"
   // ===
