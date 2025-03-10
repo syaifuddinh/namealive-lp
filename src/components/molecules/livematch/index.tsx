@@ -54,13 +54,15 @@ export const LiveMatch = ({
                         { matchName }
                     </h1>
 
-                    <img
-                        src={image}
-                        width={200}
-                        height={150}
-                        className="w-[100px] sm:w-[200px] h-auto absolute top-[1rem] right-[1rem] z-[100]"
-                        loading="eager"
-                    />
+                    { image && (
+                        <img
+                            src={image}
+                            width={200}
+                            height={150}
+                            className="w-[100px] sm:w-[200px] h-auto absolute top-[1rem] right-[1rem] z-[100]"
+                            loading="eager"
+                        />
+                    ) }
                 </div>
                 
                 <div className="fixed top-0 left-0  h-full w-full flex items-center">

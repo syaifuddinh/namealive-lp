@@ -17,7 +17,7 @@ export default async function LivePage({ params }: { params: Promise<{ id: strin
   try {
     const resp = await match.show(matchSlug) 
     matchName = resp.data.name
-    image = resp.data.image
+    // image = resp.data.image
     // channel = resp.data.channel_id;
 
   } catch {
